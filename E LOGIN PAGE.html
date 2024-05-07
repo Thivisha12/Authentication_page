@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ecss.css">
+    <script src="https://kit.fontawesome.com/39b6109859.js" crossorigin="anonymous"></script>
+
+</head>   
+<body>
+    <div class="container">
+
+   <div class="form-box">
+    <h1 id="title">Sign in</h1>
+    <form name="submit-to-google-sheet">
+        <div class="input-group">
+            <div class="input-field" id="nameField">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" placeholder="Name">
+            </div>
+            <div class="input-field">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" placeholder="Email">
+            </div>
+            <div class="input-field">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" placeholder="Password">
+            </div>
+            <p>Lost password <a href="forgetpassword.html">Click here!</a>" </p>
+            
+        </div>
+        <div class="btn-field">
+            <button type="button" id="signupBtn">SIGN UP</button>
+            <button type="button" id="signinBtn"class="disable">SIGN IN</button>
+        </div>
+    </form>
+</div> 
+
+    </div>
+    <script>
+let signupBtn=document.getElementById("signupBtn");
+let signinBtn=document.getElementById("signinBtn");
+let nameField=document.getElementById("nameField");
+let title=document.getElementById("title");
+
+signinBtn.onclick = function(){
+    nameField.style.maxHeight = "0";
+    title.innerHTML = "Sign In";
+    signupBtn.classList.add("disable");
+    signinBtn.classList.remove("disable");
+}
+signupBtn.onclick = function(){
+    nameField.style.maxHeight = "60px";
+    title.innerHTML = "Sign Up";
+    signupBtn.classList.remove("disable");
+    signinBtn.classList.add("disable");
+}
+    </script>
+    <script>
+        const scriptURL = 'https://script.google.com/a/macros/kongu.edu/s/AKfycbyRLQQ0fFXqneH8dJSPi8B_7k0HGK0mkJQlQ_7SuiSfgvRGKmhlDqPFRmZK8tnUHt1M/exec'
+        const form = document.forms['submit-to-google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</body>
+</html>
